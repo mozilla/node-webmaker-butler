@@ -44,10 +44,12 @@ if ( argv.forks > cpuCount ) {
 
 // Only (re)fork if we're a) starting up; or b) had a worker get to
 // 'listening'. Don't fork in an endless loop if the process is bad.
-function fork() {
+function run( done ) {
   console.log( '[webmaker-butler] Info: Starting server worker...' );
-  cluster.fork().on( 'listening', function() {
+  var worker = cluster.fork();
+  worker.on( 'listening', function() {
     console.log( '[webmaker-butler] Info: Server worker started.' );
+    done( worker );
   });
 }
 
@@ -67,6 +69,11 @@ cluster.on( 'exit', function( worker, code, signal ) {
   }
 });
 
-while( argv.forks-- ) {
-  fork();
+function fork() {
+  if ( argv.forks-- ) {
+    run(function() {
+      fork();
+    });
+  }
 }
+fork();
