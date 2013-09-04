@@ -40,6 +40,18 @@ var butler = require( "webmaker-butler" )({
 });
 app.use( butler.middlware );
 ...
+// For non-fatal crashes (i.e., things that get caught in Express error-handling
+// middleware), and which won't kill the domain (i.e., trigger `onCrash`),
+// report to loggins using `reportError`.
+app.use( function( err, req, res, next) {
+  if ( !err.status ) {
+    err.status = 500;
+  }
+  butler.reportError( err );
+  res.status( err.status );
+  res.render( 'error.html', { message: err.message, code: err.status });
+});
+...
 // Keep a reference to the server, so we can close it on domain crashes.
 server = app.listen( env.get( "PORT" ), function() {
   console.log( "Server listening ( http://localhost:%d )", env.get( "PORT" ));
