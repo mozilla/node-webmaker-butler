@@ -12,7 +12,7 @@ var cluster = require( 'cluster' ),
     },
     'forks': {
       description: 'Number of forks to create',
-      require: false,
+      required: false,
       default: 2,
       short: 'f'
     },
