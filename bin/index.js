@@ -67,6 +67,6 @@ cluster.on( 'exit', function( worker, code, signal ) {
   }
 });
 
-while( forks-- ) {
+while( argv.forks-- ) {
   fork();
 }
