@@ -25,7 +25,11 @@ var cluster = require( 'cluster' ),
   }).argv;
 
 function fileExists(filename) {
-  return ( fs.statSync( filename ) ).isFile();
+  try {
+    return ( fs.statSync( filename ) ).isFile();
+  } catch ( e ) {
+    return false;
+  }
 }
 
 if ( !fileExists( argv.app ) ) {
