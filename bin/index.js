@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var cluster = require( 'cluster' ),
   fs = require( 'fs' ),
   optimist = require( 'optimist' ),
@@ -6,21 +8,21 @@ var cluster = require( 'cluster' ),
   argv = optimist.usage( 'Start a clustered Webmaker node.js app.\nUsage: $0', {
     'app': {
       description: 'Name of the node.js app to start',
-      default: 'app.js',
+      'default': 'app.js',
       required: false,
       short: 'a'
     },
     'forks': {
       description: 'Number of forks to create',
       required: false,
-      default: 2,
+      'default': 2,
       short: 'f'
     },
     'restart': {
       description: 'Whether to restart failed forks on error (defaults to true)',
       boolean: true,
       required: false,
-      default: true,
+      'default': true,
       short: 'r'
     }
   }).argv;

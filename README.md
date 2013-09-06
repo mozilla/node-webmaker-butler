@@ -64,7 +64,7 @@ Starting multiple instances of your app in a cluster is made trivial using the `
 command-line tool:
 
 ```bash
-$ node ./node_modules/butler
+$ ./node_modules/.bin/butler
 ```
 
 You can configure various aspects of how the butler runs your app:
