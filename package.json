@@ -1,6 +1,6 @@
 {
   "name": "webmaker-butler",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Serving Webmaker node apps without making a mess",
   "main": "./lib",
   "bin": {
