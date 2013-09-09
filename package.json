@@ -4,7 +4,7 @@
   "description": "Serving Webmaker node apps without making a mess",
   "main": "./lib",
   "bin": {
-    "butler": "./bin"
+    "butler": "./bin/index.js"
   },
   "preferGlobal": true,
   "scripts": {
